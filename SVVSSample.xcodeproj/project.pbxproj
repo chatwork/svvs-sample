@@ -14,6 +14,12 @@
 		D6D652D32A8B160400D0D338 /* SVVSSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652D22A8B160400D0D338 /* SVVSSampleTests.swift */; };
 		D6D652DD2A8B160400D0D338 /* SVVSSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652DC2A8B160400D0D338 /* SVVSSampleUITests.swift */; };
 		D6D652DF2A8B160400D0D338 /* SVVSSampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652DE2A8B160400D0D338 /* SVVSSampleUITestsLaunchTests.swift */; };
+		D6D652EC2A8B199300D0D338 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652EB2A8B199300D0D338 /* User.swift */; };
+		D6D652EF2A8B19E100D0D338 /* SwiftID in Frameworks */ = {isa = PBXBuildFile; productRef = D6D652EE2A8B19E100D0D338 /* SwiftID */; };
+		D6D652F12A8B1A5600D0D338 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652F02A8B1A5600D0D338 /* UserView.swift */; };
+		D6D652F32A8B20D700D0D338 /* UserViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652F22A8B20D700D0D338 /* UserViewState.swift */; };
+		D6D652F52A8B229800D0D338 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652F42A8B229800D0D338 /* UserStore.swift */; };
+		D6D652F72A8B241C00D0D338 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652F62A8B241C00D0D338 /* UserRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,11 @@
 		D6D652D82A8B160400D0D338 /* SVVSSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SVVSSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D652DC2A8B160400D0D338 /* SVVSSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVSSampleUITests.swift; sourceTree = "<group>"; };
 		D6D652DE2A8B160400D0D338 /* SVVSSampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVSSampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D6D652EB2A8B199300D0D338 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D6D652F02A8B1A5600D0D338 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		D6D652F22A8B20D700D0D338 /* UserViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewState.swift; sourceTree = "<group>"; };
+		D6D652F42A8B229800D0D338 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		D6D652F62A8B241C00D0D338 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6D652EF2A8B19E100D0D338 /* SwiftID in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +110,11 @@
 				D6D652C32A8B160100D0D338 /* ContentView.swift */,
 				D6D652C52A8B160400D0D338 /* Assets.xcassets */,
 				D6D652C72A8B160400D0D338 /* Preview Content */,
+				D6D652EB2A8B199300D0D338 /* User.swift */,
+				D6D652F02A8B1A5600D0D338 /* UserView.swift */,
+				D6D652F22A8B20D700D0D338 /* UserViewState.swift */,
+				D6D652F42A8B229800D0D338 /* UserStore.swift */,
+				D6D652F62A8B241C00D0D338 /* UserRepository.swift */,
 			);
 			path = SVVSSample;
 			sourceTree = "<group>";
@@ -143,6 +160,9 @@
 			dependencies = (
 			);
 			name = SVVSSample;
+			packageProductDependencies = (
+				D6D652EE2A8B19E100D0D338 /* SwiftID */,
+			);
 			productName = SVVSSample;
 			productReference = D6D652BE2A8B160100D0D338 /* SVVSSample.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +235,9 @@
 				Base,
 			);
 			mainGroup = D6D652B52A8B160100D0D338;
+			packageReferences = (
+				D6D652ED2A8B19E100D0D338 /* XCRemoteSwiftPackageReference "swift-id" */,
+			);
 			productRefGroup = D6D652BF2A8B160100D0D338 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,8 +280,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6D652F52A8B229800D0D338 /* UserStore.swift in Sources */,
+				D6D652F32A8B20D700D0D338 /* UserViewState.swift in Sources */,
 				D6D652C42A8B160100D0D338 /* ContentView.swift in Sources */,
+				D6D652F72A8B241C00D0D338 /* UserRepository.swift in Sources */,
 				D6D652C22A8B160100D0D338 /* SVVSSampleApp.swift in Sources */,
+				D6D652EC2A8B199300D0D338 /* User.swift in Sources */,
+				D6D652F12A8B1A5600D0D338 /* UserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +605,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D6D652ED2A8B19E100D0D338 /* XCRemoteSwiftPackageReference "swift-id" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/koher/swift-id.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D6D652EE2A8B19E100D0D338 /* SwiftID */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6D652ED2A8B19E100D0D338 /* XCRemoteSwiftPackageReference "swift-id" */;
+			productName = SwiftID;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D6D652B62A8B160100D0D338 /* Project object */;
 }

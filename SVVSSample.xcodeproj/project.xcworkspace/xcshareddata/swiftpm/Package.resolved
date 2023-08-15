@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "swift-id",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/koher/swift-id.git",
+      "state" : {
+        "revision" : "d7ae15c49d1157e6f3c235e47e6075041ba6c51e",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 2
+}
