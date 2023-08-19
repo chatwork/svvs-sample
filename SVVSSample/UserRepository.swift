@@ -7,14 +7,17 @@
 
 enum UserRepository {
     static func fetchValue(for id: User.ID) async throws -> User? {
-        try await Backend.shared.value(for: id)
+        try await Task.sleep(nanoseconds: 500_000_000)
+        return try await Backend.shared.value(for: id)
     }
 
     static func fetchValues(for ids: [User.ID]) async throws -> [User] {
+        try await Task.sleep(nanoseconds: 500_000_000)
         return try await ids.compactMap { id in try await Backend.shared.value(for: id) }
     }
 
     static func updateValue(_ value: User) async throws {
+        try await Task.sleep(nanoseconds: 500_000_000)
         try await Backend.shared.setValue(value)
     }
 
@@ -30,12 +33,10 @@ enum UserRepository {
         ]
 
         func value(for id: User.ID) async throws -> User? {
-            try await Task.sleep(nanoseconds: 1_000_000_000)
             return values[id]
         }
 
         func setValue(_ value: User) async throws {
-            try await Task.sleep(nanoseconds: 1_000_000_000)
             values[value.id] = value
         }
     }
