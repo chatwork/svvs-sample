@@ -39,4 +39,9 @@ final class UserStore {
         try await UserRepository.updateValue(value)
         values[value.id] = value
     }
+
+    func updateBookmarked(_ isBookmarked: Bool, for id: User.ID) async throws {
+        try await UserRepository.updateBookmarked(isBookmarked, for: id)
+        values[id]?.isBookmarked = isBookmarked
+    }
 }

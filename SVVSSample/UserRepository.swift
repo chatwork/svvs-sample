@@ -21,6 +21,11 @@ enum UserRepository {
         try await Backend.shared.setValue(value)
     }
 
+    static func updateBookmarked(_ isBookmarked: Bool, for id: User.ID) async throws {
+        try await Task.sleep(nanoseconds: 500_000_000)
+        try await Backend.shared.updateBookmarked(isBookmarked, for: id)
+    }
+
     // Simulated backend
     private actor Backend {
         static let shared: Backend = .init()
@@ -38,6 +43,10 @@ enum UserRepository {
 
         func setValue(_ value: User) async throws {
             values[value.id] = value
+        }
+
+        func updateBookmarked(_ isBookmarked: Bool, for id: User.ID) async throws {
+            values[id]?.isBookmarked = isBookmarked
         }
     }
 }

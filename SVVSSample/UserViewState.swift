@@ -6,13 +6,14 @@
 //
 
 import Combine
+import OrderedCollections
 
 @MainActor
 final class UserViewState: ObservableObject {
     let id: User.ID
 
     @Published private(set) var user: User?
-    @Published private(set) var friends: [User] = []
+    @Published private(set) var friends: OrderedDictionary<User.ID, User> = [:]
 
     @Published var showsOnlyBookmarkedFriends: Bool = false
 
@@ -24,8 +25,12 @@ final class UserViewState: ObservableObject {
         UserStore.shared.$values.map { $0[id] }.removeDuplicates().assign(to: &$user)
 
         $user.combineLatest(UserStore.shared.$values).map { user, users in
-            guard let user else { return [] }
-            return user.friendIDs.compactMap { friendID in users[friendID] }
+            guard let user else { return [:] }
+            return OrderedDictionary(
+                uniqueKeysWithValues: user.friendIDs.lazy
+                    .compactMap { friendID in users[friendID] }
+                    .map { user in (user.id, user) }
+            )
         }
         .removeDuplicates()
         .assign(to: &$friends)
@@ -53,12 +58,14 @@ final class UserViewState: ObservableObject {
         }
     }
 
-    func toggleFriendBookmark(_ friend: User) async {
-        var friend = friend
+    func toggleFriendBookmark(for id: User.ID) async {
+        guard var friend = friends[id] else { return }
         friend.isBookmarked.toggle()
+        friends[id] = friend // to apply changes to views immediately
         do {
-            try await UserStore.shared.updateValue(friend)
+            try await UserStore.shared.updateBookmarked(friend.isBookmarked, for: id)
         } catch {
+            friends[id] = UserStore.shared.values[id] // resets changes
             // TODO: Error Handling
             print(error)
         }

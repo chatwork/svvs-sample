@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D68407EB2A90D7300098B6AE /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = D68407EA2A90D7300098B6AE /* OrderedCollections */; };
 		D6D652C22A8B160100D0D338 /* SVVSSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652C12A8B160100D0D338 /* SVVSSampleApp.swift */; };
 		D6D652C42A8B160100D0D338 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652C32A8B160100D0D338 /* ContentView.swift */; };
 		D6D652C62A8B160400D0D338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6D652C52A8B160400D0D338 /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D68407EB2A90D7300098B6AE /* OrderedCollections in Frameworks */,
 				D6D652EF2A8B19E100D0D338 /* SwiftID in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +164,7 @@
 			name = SVVSSample;
 			packageProductDependencies = (
 				D6D652EE2A8B19E100D0D338 /* SwiftID */,
+				D68407EA2A90D7300098B6AE /* OrderedCollections */,
 			);
 			productName = SVVSSample;
 			productReference = D6D652BE2A8B160100D0D338 /* SVVSSample.app */;
@@ -237,6 +240,7 @@
 			mainGroup = D6D652B52A8B160100D0D338;
 			packageReferences = (
 				D6D652ED2A8B19E100D0D338 /* XCRemoteSwiftPackageReference "swift-id" */,
+				D68407E92A90D7300098B6AE /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = D6D652BF2A8B160100D0D338 /* Products */;
 			projectDirPath = "";
@@ -609,6 +613,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D68407E92A90D7300098B6AE /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		D6D652ED2A8B19E100D0D338 /* XCRemoteSwiftPackageReference "swift-id" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/koher/swift-id.git";
@@ -620,6 +632,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D68407EA2A90D7300098B6AE /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D68407E92A90D7300098B6AE /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
 		D6D652EE2A8B19E100D0D338 /* SwiftID */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D6D652ED2A8B19E100D0D338 /* XCRemoteSwiftPackageReference "swift-id" */;

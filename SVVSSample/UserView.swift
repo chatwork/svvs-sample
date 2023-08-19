@@ -43,7 +43,7 @@ struct UserView: View {
 
                     VStack(spacing: 0) {
                         Divider()
-                        ForEach(state.friends) { friend in
+                        ForEach(state.friends.values) { friend in
                             NavigationLink {
                                 UserView(id: friend.id)
                             } label: {
@@ -58,7 +58,7 @@ struct UserView: View {
                                     Spacer()
                                     Button {
                                         Task {
-                                            await state.toggleFriendBookmark(friend)
+                                            await state.toggleFriendBookmark(for: friend.id)
                                         }
                                     } label: {
                                         Image(systemName: friend.isBookmarked ? "bookmark.fill" : "bookmark")
