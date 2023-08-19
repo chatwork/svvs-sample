@@ -44,24 +44,8 @@ struct UserView: View {
                     VStack(spacing: 0) {
                         Divider()
                         ForEach(state.friends) { friend in
-                            NavigationLink(isActive: Binding(
-                                get: {
-                                    navigatesToFriendView.contains(friend.id)
-                                },
-                                set: { newValue in
-                                    if newValue {
-                                        navigatesToFriendView.insert(friend.id)
-                                    } else {
-                                        navigatesToFriendView.remove(friend.id)
-                                    }
-                                }
-                            )) {
+                            NavigationLink {
                                 UserView(id: friend.id)
-                            } label: {
-                                EmptyView()
-                            }
-                            Button {
-                                navigatesToFriendView.insert(friend.id)
                             } label: {
                                 HStack(spacing: 16) {
                                     Image(systemName: "person.circle.fill")
@@ -82,6 +66,7 @@ struct UserView: View {
                                     Image(systemName: "chevron.forward")
                                 }
                                 .padding()
+                                .background(Color(uiColor: .systemBackground))
                             }
                             .buttonStyle(.plain)
 
