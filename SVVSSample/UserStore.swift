@@ -22,10 +22,17 @@ final class UserStore {
     }
 
     func loadValues(for ids: [User.ID]) async throws {
-        let values = try await UserRepository.fetchValues(for: ids)
-        for value in values {
-            self.values[value.id] = value
+        var values = self.values
+        let fetchedValues = try await UserRepository.fetchValues(for: ids)
+        var idsToBeRemoved: Set<User.ID> = .init(ids)
+        for value in fetchedValues {
+            values[value.id] = value
+            idsToBeRemoved.remove(value.id)
         }
+        for id in idsToBeRemoved {
+            values.removeValue(forKey: id)
+        }
+        self.values = values
     }
 
     func updateValue(_ value: User) async throws {
