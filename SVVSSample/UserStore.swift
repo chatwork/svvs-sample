@@ -36,7 +36,7 @@ final class UserStore {
     }
 
     func updateValue(_ value: User) async throws {
-        values[value.id] = value
         try await UserRepository.updateValue(value)
+        values[value.id] = value
     }
 }
