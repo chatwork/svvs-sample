@@ -21,12 +21,13 @@ final class UserViewState: ObservableObject {
     init(id: User.ID) {
         self.id = id
 
-        UserStore.shared.$values.map { $0[id] }.assign(to: &$user)
+        UserStore.shared.$values.map { $0[id] }.removeDuplicates().assign(to: &$user)
 
         $user.combineLatest(UserStore.shared.$values).map { user, users in
             guard let user else { return [] }
             return user.friendIDs.compactMap { friendID in users[friendID] }
         }
+        .removeDuplicates()
         .assign(to: &$friends)
 
         $user.sink { user in

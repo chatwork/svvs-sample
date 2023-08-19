@@ -7,7 +7,7 @@
 
 import SwiftID
 
-struct User: Sendable, Identifiable {
+struct User: Sendable, Identifiable, Hashable {
     let id: ID
     var name: String
     var friendIDs: [User.ID]
