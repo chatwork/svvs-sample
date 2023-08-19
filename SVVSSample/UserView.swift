@@ -66,7 +66,11 @@ struct UserView: View {
                                     Image(systemName: "chevron.forward")
                                 }
                                 .padding()
-                                .background(Color(uiColor: .systemBackground))
+                                // Hack to change a cell color when selected
+                                .background(
+                                    Color(uiColor: .systemBackground)
+                                        .background(Color.gray)
+                                )
                             }
                             .buttonStyle(.plain)
 
