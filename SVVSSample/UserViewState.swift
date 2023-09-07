@@ -24,11 +24,14 @@ final class UserViewState: ObservableObject {
 
         UserStore.shared.$values.map { $0[id] }.removeDuplicates().assign(to: &$user)
 
-        $user.combineLatest(UserStore.shared.$values).map { user, users in
+        $user
+        .combineLatest(UserStore.shared.$values, $showsOnlyBookmarkedFriends)
+        .map { user, users, showsOnlyBookmarkedFriends in
             guard let user else { return [:] }
             return OrderedDictionary(
                 uniqueKeysWithValues: user.friendIDs.lazy
                     .compactMap { friendID in users[friendID] }
+                    .filter { user in !showsOnlyBookmarkedFriends || user.isBookmarked }
                     .map { user in (user.id, user) }
             )
         }
