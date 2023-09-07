@@ -61,5 +61,8 @@ final class UserViewStateTests: XCTestCase {
         await stateA.toggleFriendBookmark(for: "B") // "B".isBookmarked = false
         try await sleep()
         XCTAssertEqual(stateA.filterdFriends.keys, [])
+
+        stateA.showsOnlyBookmarkedFriends = false
+        XCTAssertEqual(stateA.filterdFriends.keys, ["B", "C", "D"])
     }
 }
