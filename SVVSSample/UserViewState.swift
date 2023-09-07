@@ -13,7 +13,7 @@ final class UserViewState: ObservableObject {
     let id: User.ID
 
     @Published private(set) var user: User?
-    @Published private(set) var friends: OrderedDictionary<User.ID, User> = [:]
+    @Published private(set) var filterdFriends: OrderedDictionary<User.ID, User> = [:]
 
     @Published var showsOnlyBookmarkedFriends: Bool = false
 
@@ -36,7 +36,7 @@ final class UserViewState: ObservableObject {
             )
         }
         .removeDuplicates()
-        .assign(to: &$friends)
+        .assign(to: &$filterdFriends)
 
         $user.sink { user in
             guard let user else { return }
@@ -62,13 +62,13 @@ final class UserViewState: ObservableObject {
     }
 
     func toggleFriendBookmark(for id: User.ID) async {
-        guard var friend = friends[id] else { return }
+        guard var friend = filterdFriends[id] else { return }
         friend.isBookmarked.toggle()
-        friends[id] = friend // to apply changes to views immediately
+        filterdFriends[id] = friend // to apply changes to views immediately
         do {
             try await UserStore.shared.updateBookmarked(friend.isBookmarked, for: id)
         } catch {
-            friends[id] = UserStore.shared.values[id] // resets changes
+            filterdFriends[id] = UserStore.shared.values[id] // resets changes
             // TODO: Error Handling
             print(error)
         }
