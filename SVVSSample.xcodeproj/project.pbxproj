@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		796511BD2AA9700900A5B53F /* UserViewStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796511BC2AA9700900A5B53F /* UserViewStateTests.swift */; };
 		D68407EB2A90D7300098B6AE /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = D68407EA2A90D7300098B6AE /* OrderedCollections */; };
 		D6D652C22A8B160100D0D338 /* SVVSSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652C12A8B160100D0D338 /* SVVSSampleApp.swift */; };
 		D6D652C42A8B160100D0D338 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D652C32A8B160100D0D338 /* ContentView.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		796511BC2AA9700900A5B53F /* UserViewStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewStateTests.swift; sourceTree = "<group>"; };
 		D6D652BE2A8B160100D0D338 /* SVVSSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVVSSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D652C12A8B160100D0D338 /* SVVSSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVSSampleApp.swift; sourceTree = "<group>"; };
 		D6D652C32A8B160100D0D338 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				D6D652D22A8B160400D0D338 /* SVVSSampleTests.swift */,
+				796511BC2AA9700900A5B53F /* UserViewStateTests.swift */,
 			);
 			path = SVVSSampleTests;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6D652D32A8B160400D0D338 /* SVVSSampleTests.swift in Sources */,
+				796511BD2AA9700900A5B53F /* UserViewStateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
