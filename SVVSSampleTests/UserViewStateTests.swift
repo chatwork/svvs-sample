@@ -27,42 +27,42 @@ final class UserViewStateTests: XCTestCase {
         let stateA = UserViewState(id: "A")
         await stateA.onAppear()
         try await sleep()
-        XCTAssertEqual(stateA.filterdFriends.keys, ["B", "C", "D"])
+        XCTAssertEqual(stateA.filteredFriends.keys, ["B", "C", "D"])
 
         let stateB = UserViewState(id: "B")
         await stateB.onAppear()
         try await sleep()
-        XCTAssertEqual(stateB.filterdFriends.keys, ["A", "C"])
+        XCTAssertEqual(stateB.filteredFriends.keys, ["A", "C"])
 
         let stateC = UserViewState(id: "C")
         await stateC.onAppear()
         try await sleep()
-        XCTAssertEqual(stateC.filterdFriends.keys, ["A", "B"])
+        XCTAssertEqual(stateC.filteredFriends.keys, ["A", "B"])
 
         let stateD = UserViewState(id: "D")
         await stateD.onAppear()
         try await sleep()
-        XCTAssertEqual(stateD.filterdFriends.keys, ["A"])
+        XCTAssertEqual(stateD.filteredFriends.keys, ["A"])
     }
 
     func testOnlyBookmarked() async throws {
         let stateA = UserViewState(id: "A")
         await stateA.onAppear()
         try await sleep()
-        XCTAssertEqual(stateA.filterdFriends.keys, ["B", "C", "D"])
+        XCTAssertEqual(stateA.filteredFriends.keys, ["B", "C", "D"])
 
         await stateA.toggleFriendBookmark(for: "B") // "B".isBookmarked = true
         try await sleep()
-        XCTAssertEqual(stateA.filterdFriends.keys, ["B", "C", "D"])
+        XCTAssertEqual(stateA.filteredFriends.keys, ["B", "C", "D"])
 
         stateA.showsOnlyBookmarkedFriends = true
-        XCTAssertEqual(stateA.filterdFriends.keys, ["B"])
+        XCTAssertEqual(stateA.filteredFriends.keys, ["B"])
 
         await stateA.toggleFriendBookmark(for: "B") // "B".isBookmarked = false
         try await sleep()
-        XCTAssertEqual(stateA.filterdFriends.keys, [])
+        XCTAssertEqual(stateA.filteredFriends.keys, [])
 
         stateA.showsOnlyBookmarkedFriends = false
-        XCTAssertEqual(stateA.filterdFriends.keys, ["B", "C", "D"])
+        XCTAssertEqual(stateA.filteredFriends.keys, ["B", "C", "D"])
     }
 }
