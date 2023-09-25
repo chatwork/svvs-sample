@@ -26,14 +26,9 @@ struct UserView: View {
                         .foregroundColor(.gray)
                         .frame(width: 60)
 
-                    if let user = state.user {
-                        Text(user.name)
-                            .font(.title)
-                    } else {
-                        Text("User Name")
-                            .font(.title)
-                            .redacted(reason: .placeholder)
-                    }
+                    Text(state.user?.name ?? "User Name")
+                        .font(.title)
+                        .redacted(reason: state.user == nil ? .placeholder : [])
                 }
                 VStack {
                     Text("Friends")
