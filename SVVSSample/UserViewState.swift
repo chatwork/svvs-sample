@@ -13,7 +13,7 @@ final class UserViewState: ObservableObject {
     let id: User.ID
 
     @Published private(set) var user: User?
-    @Published private(set) var friends: OrderedDictionary<User.ID, User> = [:]
+    @Published private(set) var filteredFriends: OrderedDictionary<User.ID, User> = [:]
 
     @Published var showsOnlyBookmarkedFriends: Bool = false
 
@@ -24,16 +24,19 @@ final class UserViewState: ObservableObject {
 
         UserStore.shared.$values.map { $0[id] }.removeDuplicates().assign(to: &$user)
 
-        $user.combineLatest(UserStore.shared.$values).map { user, users in
+        $user
+        .combineLatest(UserStore.shared.$values, $showsOnlyBookmarkedFriends)
+        .map { user, users, showsOnlyBookmarkedFriends in
             guard let user else { return [:] }
             return OrderedDictionary(
                 uniqueKeysWithValues: user.friendIDs.lazy
                     .compactMap { friendID in users[friendID] }
+                    .filter { user in !showsOnlyBookmarkedFriends || user.isBookmarked }
                     .map { user in (user.id, user) }
             )
         }
         .removeDuplicates()
-        .assign(to: &$friends)
+        .assign(to: &$filteredFriends)
 
         $user.sink { user in
             guard let user else { return }
@@ -59,13 +62,13 @@ final class UserViewState: ObservableObject {
     }
 
     func toggleFriendBookmark(for id: User.ID) async {
-        guard var friend = friends[id] else { return }
+        guard var friend = filteredFriends[id] else { return }
         friend.isBookmarked.toggle()
-        friends[id] = friend // to apply changes to views immediately
+        filteredFriends[id] = friend // to apply changes to views immediately
         do {
             try await UserStore.shared.updateBookmarked(friend.isBookmarked, for: id)
         } catch {
-            friends[id] = UserStore.shared.values[id] // resets changes
+            filteredFriends[id] = UserStore.shared.values[id] // resets changes
             // TODO: Error Handling
             print(error)
         }

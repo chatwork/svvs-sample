@@ -38,7 +38,7 @@ struct UserView: View {
 
                     VStack(spacing: 0) {
                         Divider()
-                        ForEach(state.friends.values) { friend in
+                        ForEach(state.filteredFriends.values) { friend in
                             NavigationLink {
                                 UserView(id: friend.id)
                             } label: {
